@@ -1,7 +1,9 @@
 import data from "./data.json";
 
 export async function GET() {
-  return Response.json(data.products);
-}
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-// BFF (back-end for front-end)
+  const featuredProducts = data.products.filter((product) => product.featured);
+
+  return Response.json(featuredProducts);
+}
